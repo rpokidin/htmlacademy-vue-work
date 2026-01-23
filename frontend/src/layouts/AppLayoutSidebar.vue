@@ -1,11 +1,11 @@
 <template>
-  <!--  Отслеживает, в какую колонку передана задача-->
+  <!--  Отслеживает в какую колонку передана задача-->
   <app-drop
       class="backlog"
       :class="{ 'backlog--hide': state.backlogIsHidden }"
       @drop="moveTask"
   >
-    <!--  Отвечает за открытие и закрытие бэклога-->
+    <!--  Отвечает за открытие/закрытие беклога-->
     <button
         class="backlog__title"
         @click="state.backlogIsHidden = !state.backlogIsHidden"
@@ -34,7 +34,7 @@
           </div>
 
           <div class="backlog__target-area">
-            <!--  Задачи в бэклоге-->
+            <!--  Задачи в беклоге-->
             <task-card
                 v-for="task in sidebarTasks"
                 :key="task.id"
@@ -64,7 +64,7 @@ const props = defineProps({
 
 const state = reactive({ backlogIsHidden: false })
 
-// Фильтруем задачи, которые относятся к бэклогу (columnId === null)
+// Фильтруем задачи, которые относятся к беклогу (columnId === null)
 const sidebarTasks = computed(() => {
   return props.tasks
       .filter(task => !task.columnId)
@@ -74,7 +74,7 @@ const sidebarTasks = computed(() => {
 const emits = defineEmits(['updateTasks'])
 
 function moveTask (active, toTask) {
-  // Не обновляем массив, если задача не перемещалась
+  // Не обновляем массив если задача фактически не перемещалась
   if (toTask && active.id === toTask.id) {
     return
   }
