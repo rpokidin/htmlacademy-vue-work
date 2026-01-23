@@ -4,7 +4,7 @@
     <!--      Компонент AppDrag определяет какая задача перемещается -->
     <app-drag :transfer-data="task">
       <div class="task">
-<!--        Этот блок показывает пользователя, который работает над задачей-->
+<!--        Данный блок показывает пользователя, который работает над задачей-->
         <div
             v-if="task.user"
             class="task__user"
@@ -19,7 +19,7 @@
           </div>
           {{ task.user.name }}
         </div>
-<!--        Этот блок показывает статусы задачи-->
+<!--        Данный блок показавает статусы задачи-->
         <div class="task__statuses">
           <span
               v-if="task.status"
@@ -39,7 +39,7 @@
           {{ task.title }}
         </h5>
 <!--        Тэги задачи вынесены в отдельный компонент-->
-        <task-card-tags
+        <TaskCardTags
             v-if="task.tags && task.tags.length"
             :tags="task.tags"
         />

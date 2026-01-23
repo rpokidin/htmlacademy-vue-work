@@ -1,5 +1,5 @@
 <template>
-<!--  Отслеживает, в какую колонку передана задача-->
+<!--  Отслеживает в какую колонку передана задача-->
   <app-drop
       class="column"
       @drop="moveTask"
@@ -10,7 +10,7 @@
         {{ state.columnTitle }}
       </span>
 
-<!--      Показывает инпут, если колонка редактируется-->
+<!--      Показывает инпут если колонка редактируется-->
       <input
           v-else
           ref="columnTitle"
@@ -28,7 +28,7 @@
           @click="showInput"
       />
 <!--      Показывает иконку удаления колонки-->
-<!--      Иконка не будет отображаться, если в колонке есть задачи-->
+<!--      Иконка не будет отображаться если в колонке есть задачи-->
       <app-icon
           v-if="!state.isInputShowed && !columnTasks.length"
           class="icon--trash"
@@ -77,11 +77,11 @@ const columnTasks = computed(() => {
     .sort((a, b) => a.sortOrder - b.sortOrder)
 })
 
-// Показывает инпут для редактирования колонки и наводит фокус
+// Показывает инпут для редактирования колонки и наводим фокус
 async function showInput () {
   state.isInputShowed = true
-  // Функция nextTick ожидает, когда произойдёт ререндеринг компонента
-  // Так как мы изменили span на input, нужно подождать, когда отрисуется инпут
+  // Функция nextTick ожидает когда произойдет ререндер компонента
+  // Так как мы изменили span ни input, нам нужно подождать когда отрисуется инпут
   await nextTick()
   columnTitle.value.focus()
 }
@@ -99,7 +99,7 @@ function updateInput () {
 
 // Метод для переноса задач
 function moveTask (active, toTask) {
-  // Не обновлять, если нет изменений
+  // Не обновлять если нет изменений
   if (toTask && active.id === toTask.id) {
     return
   }
